@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Calculadora</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 0 0 10px gray, 0 0 0 20px #ffa500; /* Adicionando margem cinza e laranja */
+            max-width: 300px;
+            width: 100%;
+            padding: 50px;
+            margin: 10px; 
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input[type="text"], button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #000000;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: #000000;
+            color: #fff;
+        }
+
+        #result {
+            font-weight: bold;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .operation-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .operation-buttons button {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Minha Calculadora</h1>
+        <label for="num1">Primeiro número:</label>
+        <input type="text" id="num1">
+        <label for="num2">Segundo número:</label>
+        <input type="text" id="num2">
+        <div class="operation-buttons">
+            <button onclick="setOperation('add')">Soma</button>
+            <button onclick="setOperation('subtract')">Subtrair</button>
+            <button onclick="setOperation('multiply')">Multiplicar</button>
+            <button onclick="setOperation('divide')">Dividir</button>
+        </div>
+        <button onclick="calculate()">Calcular</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        var operation;
+
+        function setOperation(op) {
+            operation = op;
+        }
+
+        function calculate() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            var result;
+
+            switch (operation) {
+                case 'add':
+                    result = num1 + num2;
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    break;
+                case 'divide':
+                    if (num2 === 0) {
+                        result = "Não é possível dividir por zero!";
+                    } else {
+                        result = num1 / num2;
+                    }
+                    break;
+                default:
+                    result = "Selecione uma operação";
+            }
+
+            document.getElementById('result').innerText = "Resultado: " + result;
+        }
+    </script>
+</body>
+</html>
